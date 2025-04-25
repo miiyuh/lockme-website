@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { Button } from "@/components/ui/button";
+import Button from "@/components/ui/Button";
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
         <section className="text-center space-y-6">
           <h2 className="text-4xl font-bold text-[#648b83]">Secure Your Files with Confidence</h2>
           <p className="text-lg">LockMe helps you encrypt and decrypt files easily with AES-256 encryption. Compatible with Windows & Linux.</p>
-          <Button className="bg-[#648b83] hover:bg-[#4e746e] text-[#1a1a1a] font-bold px-6 py-3 rounded-2xl text-base" size="lg">Download Now</Button>
+          <Button className="bg-[#648b83] hover:bg-[#4e746e] text-[#1a1a1a] font-bold px-6 py-3 rounded-2xl text-base">Download Now</Button>
         </section>
 
         <section id="features" className="mt-20 space-y-8">
