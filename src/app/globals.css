@@ -89,6 +89,20 @@
   .prose pre code {
     @apply bg-transparent p-0;
   }
+
+  .prose ul, .prose ol {
+    @apply my-4; /* Adjust vertical margin for the list block */
+  }
+  .prose li {
+    @apply my-2 relative; /* Add vertical spacing between list items and set position relative for custom markers */
+  }
+  .prose ul > li, .prose ol > li {
+    @apply pl-7; /* Add padding-left to make space for absolutely positioned ::before markers */
+  }
+  .prose li p { /* In case list items contain paragraphs, control their margins */
+    @apply my-1;
+  }
+
   .prose ul > li::before {
     /* Ensure bullets are circular and use accent color, matching Tailwind Typography structure if possible */
     content: ""; /* Required for pseudo-elements */
@@ -96,11 +110,13 @@
     width: 0.375em; /* Tailwind Typography default size */
     height: 0.375em; /* Tailwind Typography default size */
     top: calc(0.875em - 0.1875em); /* Adjust vertical alignment */
-    left: 0.25em; /* Adjust horizontal alignment */
+    left: 0.25em; /* Adjust horizontal alignment (relative to parent li's padding box) */
     @apply bg-accent rounded-full;
   }
   .prose ol > li::before {
-    @apply text-accent; /* This is fine for ordered list numbers */
+    /* Styles the default number marker for ordered lists */
+    @apply text-accent font-semibold; 
+    /* Note: True custom counter styling for ol is more complex and may need counter-reset/increment */
   }
 
   .dark .prose {
@@ -122,14 +138,30 @@
   .dark .prose pre {
     @apply bg-muted/70;
   }
+
+  .dark .prose ul, .dark .prose ol {
+    @apply my-4;
+  }
+  .dark .prose li {
+    @apply my-2 relative;
+  }
+  .dark .prose ul > li, .dark .prose ol > li {
+    @apply pl-7;
+  }
+  .dark .prose li p {
+    @apply my-1;
+  }
+
   .dark .prose ul > li::before {
-    /* Ensure bullets are circular and use accent color in dark mode */
-    content: ""; /* Required for pseudo-elements */
+    content: ""; 
     position: absolute;
-    width: 0.375em; /* Tailwind Typography default size */
-    height: 0.375em; /* Tailwind Typography default size */
-    top: calc(0.875em - 0.1875em); /* Adjust vertical alignment */
-    left: 0.25em; /* Adjust horizontal alignment */
+    width: 0.375em; 
+    height: 0.375em; 
+    top: calc(0.875em - 0.1875em); 
+    left: 0.25em; 
     @apply bg-accent rounded-full;
+  }
+  .dark .prose ol > li::before {
+    @apply text-accent font-semibold;
   }
 }
