@@ -2,19 +2,19 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // CardHeader and CardContent might not be directly used in the modified section but kept for consistency if other cards use them.
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; 
 import { Users, Shield, Eye, Zap, User, Linkedin, Globe } from 'lucide-react';
 
 const teamMembers = [
   {
     name: "Azri D. Explorer",
     role: "Creator, Lead Developer & Security Architect",
-    avatarSrc: "https://picsum.photos/seed/dev1/100/100",
+    avatarSrc: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaAW7cKqJgoJf6fr1HSSZIBN04mDI3bf99kr6LqaHQYM6H3DEDwE9UaFIV4GdaLSfNQp9o5dE9Uc2wm4Os7Vlcllvy8cudw_LfPOtB_nGMpOzujzLXjCJQ4MEHXge1Xfskrc5YasohxFJP1I1nKSgLUJrnUG9oqPkXSLBZoEIiSWRPVKg/s220/azri_cropped.png",
     avatarFallback: "AD",
     bio: "Azri is passionate about cybersecurity and privacy-focused software. With a background in cryptography and software engineering, Azri leads the development of LockMe, ensuring its robustness and user-friendliness. As the sole creator, Azri is dedicated to delivering a secure and reliable application.",
     hint: "developer portrait",
-    linkedinUrl: "https://www.linkedin.com/in/example-profile", // Placeholder LinkedIn URL
-    websiteUrl: "https://example.com" // Placeholder Website URL
+    linkedinUrl: "https://www.linkedin.com/in/azrideveloper/", 
+    websiteUrl: "https://azrideveloper.github.io/" 
   },
 ];
 
