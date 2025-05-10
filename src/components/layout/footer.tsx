@@ -28,7 +28,7 @@ export function Footer() {
             Privacy Policy
           </Link>
           <Link
-            href="https://github.com/azrideveloper/LockMe" 
+            href="https://github.com/miiyuh/lockme" 
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground"

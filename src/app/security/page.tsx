@@ -68,7 +68,7 @@ const securityFeatures = [
     icon: <GitFork className="h-10 w-10 text-accent" />,
     title: 'Open Source & Transparent',
     description: 'LockMe is proud to be open source under the MIT License. This transparency allows anyone to inspect our code, verify our security practices, and contribute to the project, fostering trust and community-driven security.',
-    link: 'https://github.com/azrideveloper/LockMe',
+    link: 'https://github.com/miiyuh/lockme',
     linkText: 'View code on GitHub'
   },
   {
@@ -155,3 +155,4 @@ export default function SecurityPage() {
     </div>
   );
 }
+
