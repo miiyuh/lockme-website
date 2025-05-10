@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ModeToggle } from '@/components/mode-toggle';
-import { Lock } from 'lucide-react';
+// import { Lock } from 'lucide-react'; // Lock icon commented out, can be removed if not used
 
 export function Header() {
   return (
@@ -13,12 +13,12 @@ export function Header() {
             LockMe
           </span> */}
           <Image
-            src="https://picsum.photos/950/480"
+            src="https://lockme.my/logo_lockme_highRESver.png"
             alt="LockMe Logo"
-            width={63} // Calculated based on 950/480 aspect ratio for a 32px height
+            width={63} // Calculated based on 950/480 aspect ratio for a 32px height. Adjust if original image aspect ratio is different
             height={32}
             priority
-            data-ai-hint="app logo"
+            // data-ai-hint="app logo" // Removed as it's a real logo
           />
         </Link>
         <nav className="flex flex-1 items-center space-x-4 lg:space-x-6 text-sm font-medium">
