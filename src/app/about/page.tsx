@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Shield, Eye, Zap, User } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // CardHeader and CardContent might not be directly used in the modified section but kept for consistency if other cards use them.
+import { Users, Shield, Eye, Zap, User, Linkedin, Globe } from 'lucide-react';
 
 const teamMembers = [
   {
@@ -11,7 +12,9 @@ const teamMembers = [
     avatarSrc: "https://picsum.photos/seed/dev1/100/100",
     avatarFallback: "AD",
     bio: "Azri is passionate about cybersecurity and privacy-focused software. With a background in cryptography and software engineering, Azri leads the development of LockMe, ensuring its robustness and user-friendliness. As the sole creator, Azri is dedicated to delivering a secure and reliable application.",
-    hint: "developer portrait"
+    hint: "developer portrait",
+    linkedinUrl: "https://www.linkedin.com/in/example-profile", // Placeholder LinkedIn URL
+    websiteUrl: "https://example.com" // Placeholder Website URL
   },
 ];
 
@@ -46,7 +49,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="container py-12 md:py-16 lg:py-20">
+    <div className="container mx-auto py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
       <section className="text-center mb-12 md:mb-16">
         <Users className="h-12 w-12 md:h-16 md:w-16 mx-auto mb-4 text-accent" />
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl mb-6">
@@ -121,20 +124,36 @@ export default function AboutPage() {
           <User className="h-12 w-12 md:h-16 md:w-16 mx-auto mb-4 text-accent" />
           <h2 className="text-3xl font-semibold">Meet the Creator</h2>
         </div>
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           {teamMembers.map((member) => (
             <Card key={member.name} className="shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
-              <CardHeader className="flex flex-col items-center text-center p-6 bg-secondary/30">
-                <Avatar className="w-24 h-24 mb-4 border-2 border-accent">
-                  <AvatarImage src={member.avatarSrc} alt={`${member.name} - ${member.role}`} data-ai-hint={member.hint} />
-                  <AvatarFallback>{member.avatarFallback}</AvatarFallback>
-                </Avatar>
-                <CardTitle className="text-xl">{member.name}</CardTitle>
-                <p className="text-sm text-accent">{member.role}</p>
-              </CardHeader>
-              <CardContent className="p-6">
-                <p className="text-muted-foreground text-sm leading-relaxed text-center md:text-left">{member.bio}</p>
-              </CardContent>
+              <div className="md:flex">
+                {/* Left Section */}
+                <div className="md:w-1/3 p-6 flex flex-col items-center md:items-start text-center md:text-left bg-secondary/30">
+                  <Avatar className="w-24 h-24 mb-4 border-2 border-accent">
+                    <AvatarImage src={member.avatarSrc} alt={`${member.name} - ${member.role}`} data-ai-hint={member.hint} />
+                    <AvatarFallback>{member.avatarFallback}</AvatarFallback>
+                  </Avatar>
+                  <h3 className="text-xl font-semibold text-card-foreground">{member.name}</h3>
+                  <p className="text-sm text-accent mb-4">{member.role}</p>
+                  <div className="flex space-x-3">
+                    {member.linkedinUrl && (
+                      <Link href={member.linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label={`${member.name}'s LinkedIn Profile`} className="text-muted-foreground hover:text-accent transition-colors">
+                        <Linkedin className="h-6 w-6" />
+                      </Link>
+                    )}
+                    {member.websiteUrl && (
+                      <Link href={member.websiteUrl} target="_blank" rel="noopener noreferrer" aria-label={`${member.name}'s Website`} className="text-muted-foreground hover:text-accent transition-colors">
+                        <Globe className="h-6 w-6" />
+                      </Link>
+                    )}
+                  </div>
+                </div>
+                {/* Right Section (Bio) */}
+                <div className="md:w-2/3 p-6">
+                  <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
+                </div>
+              </div>
             </Card>
           ))}
         </div>
