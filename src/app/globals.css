@@ -71,6 +71,9 @@
   .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
     @apply text-foreground;
   }
+  .prose h2 { /* Specific styling for H2 elements in prose */
+    @apply text-3xl font-bold mt-10 mb-4;
+  }
   .prose strong {
     @apply text-foreground;
   }
@@ -106,6 +109,7 @@
   .dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose h4, .dark .prose h5, .dark .prose h6 {
     @apply text-foreground;
   }
+   /* .dark .prose h2 will inherit from .prose h2 and text-foreground from .dark .prose h1...h6 */
   .dark .prose strong {
     @apply text-foreground;
   }
