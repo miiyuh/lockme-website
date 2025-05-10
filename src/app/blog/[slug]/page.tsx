@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getBlogPostBySlug, blogPosts } from '@/lib/blogData';
+import { getBlogPostBySlug, blogPosts } from '@/lib/blogData.tsx';
 import { ArrowLeft, CalendarDays, UserCircle, Tag } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
