@@ -1,9 +1,13 @@
+
+"use client";
 import type { Metadata } from 'next';
 import { Shield } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const PAGE_TITLE = 'Privacy Policy';
 const PAGE_DESCRIPTION = 'Learn about how LockMe handles your data and respects your privacy. Our commitment to protecting your information.';
 
+// Metadata can remain static as it's for SEO and doesn't rely on the dynamic date for its core function.
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
@@ -14,7 +18,7 @@ export const metadata: Metadata = {
     url: '/privacy-policy',
     images: [
       {
-        url: '/og-image-privacy.png', // Specific OG image for Privacy Policy page
+        url: '/og-image-privacy.png', 
         width: 1200,
         height: 630,
         alt: 'LockMe Privacy Policy',
@@ -26,13 +30,19 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/twitter-image-privacy.png'], // Specific Twitter image for Privacy Policy page
+    images: ['/twitter-image-privacy.png'], 
   },
 };
 
 export default function PrivacyPolicyPage() {
+  const [lastUpdated, setLastUpdated] = useState<string>('');
+
+  useEffect(() => {
+    setLastUpdated(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+  }, []);
+
   return (
-    <div className="container py-12 md:py-20">
+    <div className="container py-12 md:py-20 px-4 sm:px-6 lg:px-8">
       <section className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <Shield className="h-16 w-16 mx-auto mb-4 text-accent" />
@@ -40,7 +50,7 @@ export default function PrivacyPolicyPage() {
             {PAGE_TITLE}
           </h1>
           <p className="text-lg text-muted-foreground md:text-xl">
-            Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            Last Updated: {lastUpdated || 'Loading...'}
           </p>
         </div>
 
@@ -60,7 +70,7 @@ export default function PrivacyPolicyPage() {
           <p>
             The personal information that we collect depends on the context of your interactions with us and the Website, the choices you make and the products and features you use. The personal information we collect may include the following:
           </p>
-          <ul className="list-disc list-inside">
+          <ul>
             <li><strong>Contact Information:</strong> If you contact us directly (e.g., via email for support), we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</li>
           </ul>
           <h3 id="information-automatically-collected">Information Automatically Collected</h3>
@@ -76,7 +86,7 @@ export default function PrivacyPolicyPage() {
           <p>
             We use personal information collected via our Website for a variety of business purposes described below.
           </p>
-          <ul className="list-disc list-inside">
+          <ul>
             <li><strong>To respond to user inquiries/offer support to users.</strong> We may use your information to respond to your inquiries and solve any potential issues you might have with the use of our Services.</li>
             <li><strong>To send administrative information to you.</strong> We may use your personal information to send you product, service and new feature information and/or information about changes to our terms, conditions, and policies.</li>
             <li><strong>To protect our Services.</strong> We may use your information as part of our efforts to keep our Website safe and secure (for example, for fraud monitoring and prevention).</li>
@@ -93,7 +103,7 @@ export default function PrivacyPolicyPage() {
           <p>
             Specifically:
           </p>
-          <ul className="list-disc list-inside">
+          <ul>
             <li>We may process or share your data that we hold based on the following legal basis:
               <ul className="list-disc list-inside ml-4">
                 <li><strong>Consent:</strong> We may process your data if you have given us specific consent to use your personal information for a specific purpose.</li>

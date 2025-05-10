@@ -1,4 +1,5 @@
 
+
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -82,7 +83,7 @@ const securityFeatures = [
 
 export default function SecurityPage() {
   return (
-    <div className="container mx-auto py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+    <div className="container py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
       <section className="text-center mb-12 md:mb-16">
         <ShieldCheck className="h-12 w-12 md:h-16 md:w-16 mx-auto mb-4 text-accent" />
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl mb-6">
