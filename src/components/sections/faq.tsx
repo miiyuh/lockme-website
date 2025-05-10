@@ -10,7 +10,7 @@ const faqs = [
   {
     question: "Is LockMe free?",
     answer:
-      "LockMe is currently free to use during its beta phase. We may introduce premium features in the future, but the core encryption/decryption functionality will remain accessible.",
+      "Yes, LockMe is completely free to use! We believe powerful security tools should be accessible to everyone.",
   },
   {
     question: "What happens if I lose my password?",
@@ -25,8 +25,13 @@ const faqs = [
   {
     question: "Is it open source?",
     answer:
-      "LockMe is not currently open source, but we are considering releasing parts of the codebase or the full project under an open-source license in the future. Transparency and security are our top priorities.",
+      "Yes, LockMe is proud to be a free and open-source project! The source code is available on GitHub under the MIT License. We believe in transparency and community collaboration to build secure software.",
   },
+  {
+    question: "What license is LockMe under?",
+    answer:
+      "LockMe is released under the MIT License, which is a permissive free software license. This means you are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software.",
+  }
 ];
 
 export function FaqSection() {
@@ -46,7 +51,7 @@ export function FaqSection() {
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
               <AccordionItem value={`item-${index}`} key={index}>
-                <AccordionTrigger className="text-lg hover:no-underline">
+                <AccordionTrigger className="text-lg hover:no-underline text-left">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-base text-muted-foreground leading-relaxed">
