@@ -122,7 +122,7 @@ export default function SecurityPage() {
 
       <section className="mb-12 md:mb-16 max-w-3xl mx-auto">
         <h2 className="text-3xl font-semibold text-center mb-8">Your Role in Security</h2>
-        <div className="prose prose-lg dark:prose-invert max-w-none">
+        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-semibold prose-a:text-accent hover:prose-a:text-accent/80 prose-ul:list-disc prose-ul:pl-6 prose-li:my-1">
             <p>
                 While LockMe provides strong encryption tools, the overall security of your files also depends on your practices:
             </p>
@@ -146,7 +146,7 @@ export default function SecurityPage() {
                 If you believe you have found a security vulnerability in LockMe, please report it to us responsibly. We appreciate the community&apos;s help in keeping LockMe secure.
             </p>
             <a
-            href="mailto:azri.securedev@gmail.com?subject=LockMe%20Security%20Vulnerability%20Report"
+            href="mailto:support@lockme.my?subject=LockMe%20Security%20Vulnerability%20Report"
             className="mt-4 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-destructive text-destructive-foreground hover:bg-destructive/90 h-10 px-4 py-2"
             >
             Report a Vulnerability

@@ -29,14 +29,14 @@ export default function PrivacyPolicyClientContent() {
 
         <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-semibold prose-a:text-accent hover:prose-a:text-accent/80">
           <p>
-            Welcome to LockMe (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice, or our practices with regards to your personal information, please contact us at azri.securedev@gmail.com.
+            Welcome to LockMe (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice, or our practices with regards to your personal information, please contact us at support@lockme.my.
           </p>
 
           <h2 id="what-information-do-we-collect">1. What Information Do We Collect?</h2>
           <p>
             LockMe is an offline-first desktop application designed for file encryption and decryption.
           </p>
-          <h3 id="information-you-provide">Information You Provide to Us</h3>
+          <h3>Information You Provide to Us</h3>
           <p>
             We collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and Services, when you participate in activities on the Website or otherwise when you contact us.
           </p>
@@ -46,7 +46,7 @@ export default function PrivacyPolicyClientContent() {
           <ul>
             <li><strong>Contact Information:</strong> If you contact us directly (e.g., via email for support), we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</li>
           </ul>
-          <h3 id="information-automatically-collected">Information Automatically Collected</h3>
+          <h3>Information Automatically Collected</h3>
           <p>
             As LockMe is a desktop application that primarily operates offline, we do <strong>not</strong> automatically collect any personal information from your use of the core encryption/decryption features of the application itself. Your files and the passwords you use for encryption remain on your local device and are not transmitted to us.
           </p>
@@ -103,7 +103,7 @@ export default function PrivacyPolicyClientContent() {
 
           <h2 id="childrens-privacy">5. Do We Collect Information From Minors?</h2>
           <p>
-            We do not knowingly solicit data from or market to children under 18 years of age. By using the Website or Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Website or Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at azri.securedev@gmail.com.
+            We do not knowingly solicit data from or market to children under 18 years of age. By using the Website or Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Website or Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at support@lockme.my.
           </p>
 
           <h2 id="your-privacy-rights">6. What Are Your Privacy Rights?</h2>
@@ -118,7 +118,7 @@ export default function PrivacyPolicyClientContent() {
 
           <h2 id="contact-us">8. How Can You Contact Us About This Notice?</h2>
           <p>
-            If you have questions or comments about this notice, you may email us at azri.securedev@gmail.com.
+            If you have questions or comments about this notice, you may email us at support@lockme.my.
           </p>
         </div>
       </section>

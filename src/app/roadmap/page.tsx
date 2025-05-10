@@ -175,7 +175,7 @@ export default function RoadmapPage() {
           We value your feedback! If you have ideas for new features or improvements, please feel free to share them with us.
         </p>
         <a
-          href="mailto:azri.securedev@gmail.com?subject=LockMe%20Feature%20Suggestion"
+          href="mailto:support@lockme.my?subject=LockMe%20Feature%20Suggestion"
           className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
         >
           Suggest a Feature
