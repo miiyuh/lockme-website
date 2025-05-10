@@ -2,52 +2,36 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Shield, Eye, Zap } from 'lucide-react'; // Assuming Zap for User-Friendly, replace if better exists or use SVG
+import { Users, Shield, Eye, Zap, User } from 'lucide-react';
 
 const teamMembers = [
   {
     name: "Azri D. Explorer",
-    role: "Lead Developer & Security Architect",
+    role: "Creator, Lead Developer & Security Architect",
     avatarSrc: "https://picsum.photos/seed/dev1/100/100",
     avatarFallback: "AD",
-    bio: "Azri is passionate about cybersecurity and privacy-focused software. With a background in cryptography and software engineering, Azri leads the development of LockMe, ensuring its robustness and user-friendliness.",
+    bio: "Azri is passionate about cybersecurity and privacy-focused software. With a background in cryptography and software engineering, Azri leads the development of LockMe, ensuring its robustness and user-friendliness. As the sole creator, Azri is dedicated to delivering a secure and reliable application.",
     hint: "developer portrait"
-  },
-  {
-    name: "Kai ByteSmith",
-    role: "UX/UI Designer",
-    avatarSrc: "https://picsum.photos/seed/designer1/100/100",
-    avatarFallback: "KB",
-    bio: "Kai believes that security software should be intuitive and accessible to everyone. Kai designs LockMe's interface with a focus on simplicity and a seamless user experience.",
-    hint: "designer portrait"
-  },
-  {
-    name: "System Sentinel",
-    role: "QA & Testing Lead",
-    avatarSrc: "https://picsum.photos/seed/qa1/100/100",
-    avatarFallback: "SS",
-    bio: "System ensures LockMe meets the highest standards of quality and reliability. With meticulous attention to detail, System oversees all testing processes to identify and resolve potential issues.",
-    hint: "tester portrait"
   },
 ];
 
 const PAGE_TITLE = 'About LockMe';
-const PAGE_DESCRIPTION = 'Learn more about LockMe, our mission to provide secure, offline-first file encryption, and the team behind the app.';
+const PAGE_DESCRIPTION = 'Learn more about LockMe, our mission to provide secure, offline-first file encryption, and the creator behind the app.';
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
-  keywords: ["LockMe team", "about LockMe", "encryption software mission", "data privacy company", "cybersecurity team"],
+  keywords: ["LockMe creator", "about LockMe", "encryption software mission", "data privacy company", "cybersecurity developer"],
   openGraph: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/about',
     images: [
       {
-        url: '/og-image-about.png', // Specific OG image for About page
+        url: '/og-image-about.png', 
         width: 1200,
         height: 630,
-        alt: 'About LockMe Team and Mission',
+        alt: 'About LockMe Creator and Mission',
       },
     ],
     type: 'website',
@@ -56,15 +40,15 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/twitter-image-about.png'], // Specific Twitter image for About page
+    images: ['/twitter-image-about.png'], 
   },
 };
 
 export default function AboutPage() {
   return (
-    <div className="container py-12 md:py-20">
-      <section className="text-center mb-16">
-        <Users className="h-16 w-16 mx-auto mb-4 text-accent" />
+    <div className="container py-12 md:py-16 lg:py-20">
+      <section className="text-center mb-12 md:mb-16">
+        <Users className="h-12 w-12 md:h-16 md:w-16 mx-auto mb-4 text-accent" />
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl mb-6">
           {PAGE_TITLE}
         </h1>
@@ -73,8 +57,8 @@ export default function AboutPage() {
         </p>
       </section>
 
-      <section className="mb-16">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section className="mb-12 md:mb-16">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
             <h2 className="text-3xl font-semibold mb-4">Our Mission</h2>
             <p className="text-muted-foreground mb-4 text-lg">
@@ -99,34 +83,33 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mb-16">
-        <h2 className="text-3xl font-semibold text-center mb-10">Why Choose LockMe?</h2>
-        <div className="grid md:grid-cols-3 gap-8">
+      <section className="mb-12 md:mb-16">
+        <h2 className="text-3xl font-semibold text-center mb-8 md:mb-10">Why Choose LockMe?</h2>
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
           <Card className="shadow-lg hover:shadow-xl transition-shadow">
-            <CardHeader className="items-center text-center">
+            <CardHeader className="items-center text-center p-4 md:p-6">
               <Shield className="h-10 w-10 text-accent mb-2" />
-              <CardTitle>Rock-Solid Security</CardTitle>
+              <CardTitle className="text-lg md:text-xl">Rock-Solid Security</CardTitle>
             </CardHeader>
-            <CardContent className="text-center text-muted-foreground text-sm leading-relaxed">
+            <CardContent className="text-center text-muted-foreground text-sm leading-relaxed p-4 md:p-6 pt-0">
               Utilizing AES-256 and RSA encryption, LockMe offers military-grade protection for your most valuable files.
             </CardContent>
           </Card>
           <Card className="shadow-lg hover:shadow-xl transition-shadow">
-            <CardHeader className="items-center text-center">
+            <CardHeader className="items-center text-center p-4 md:p-6">
               <Eye className="h-10 w-10 text-accent mb-2" />
-              <CardTitle>Complete Privacy</CardTitle>
+              <CardTitle className="text-lg md:text-xl">Complete Privacy</CardTitle>
             </CardHeader>
-            <CardContent className="text-center text-muted-foreground text-sm leading-relaxed">
+            <CardContent className="text-center text-muted-foreground text-sm leading-relaxed p-4 md:p-6 pt-0">
               As an offline-first application, your files and passwords never leave your computer. No cloud, no tracking, no compromises.
             </CardContent>
           </Card>
           <Card className="shadow-lg hover:shadow-xl transition-shadow">
-            <CardHeader className="items-center text-center">
-             {/* Using Zap icon for User-Friendly, consider a more direct icon if available or an SVG */}
+            <CardHeader className="items-center text-center p-4 md:p-6">
               <Zap className="h-10 w-10 text-accent mb-2" /> 
-              <CardTitle>User-Friendly</CardTitle>
+              <CardTitle className="text-lg md:text-xl">User-Friendly</CardTitle>
             </CardHeader>
-            <CardContent className="text-center text-muted-foreground text-sm leading-relaxed">
+            <CardContent className="text-center text-muted-foreground text-sm leading-relaxed p-4 md:p-6 pt-0">
               Designed with simplicity in mind. Encrypt and decrypt files with an intuitive interface and drag-and-drop functionality.
             </CardContent>
           </Card>
@@ -134,8 +117,11 @@ export default function AboutPage() {
       </section>
 
       <section>
-        <h2 className="text-3xl font-semibold text-center mb-12">Meet the Team (Illustrative)</h2>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-col items-center text-center mb-8 md:mb-12">
+          <User className="h-12 w-12 md:h-16 md:w-16 mx-auto mb-4 text-accent" />
+          <h2 className="text-3xl font-semibold">Meet the Creator</h2>
+        </div>
+        <div className="max-w-2xl mx-auto">
           {teamMembers.map((member) => (
             <Card key={member.name} className="shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
               <CardHeader className="flex flex-col items-center text-center p-6 bg-secondary/30">
@@ -147,14 +133,11 @@ export default function AboutPage() {
                 <p className="text-sm text-accent">{member.role}</p>
               </CardHeader>
               <CardContent className="p-6">
-                <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed text-center md:text-left">{member.bio}</p>
               </CardContent>
             </Card>
           ))}
         </div>
-         <p className="text-center text-muted-foreground mt-8 text-sm">
-            Note: The team members above are illustrative for demonstration purposes.
-          </p>
       </section>
     </div>
   );
