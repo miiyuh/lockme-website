@@ -1,5 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShieldCheck, Key, MousePointerSquare, Laptop, WifiOff, Puzzle } from "lucide-react";
+import { ShieldCheck, Key, MousePointerSquareDashed, Laptop, WifiOff, Puzzle } from "lucide-react";
+
+// Helper icon, because KeyRound is used in how-it-works but also here.
+// Defined at the top to avoid initialization errors.
+const KeyRound = ({className}: {className?: string}) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+  </svg>
+);
 
 const features = [
   {
@@ -18,7 +26,7 @@ const features = [
     description: "Secure your files with a strong password that only you know.",
   },
   {
-    icon: <MousePointerSquare className="h-8 w-8 text-accent" />,
+    icon: <MousePointerSquareDashed className="h-8 w-8 text-accent" />,
     title: "Drag & Drop",
     description: "User-friendly interface with easy drag and drop functionality for files.",
   },
@@ -39,6 +47,7 @@ export function FeaturesSection() {
     <section id="features" className="w-full py-16 md:py-24 lg:py-32 bg-secondary text-secondary-foreground">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+          <Puzzle className="h-12 w-12 text-accent" />
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Powerful Features
           </h2>
@@ -63,10 +72,3 @@ export function FeaturesSection() {
     </section>
   );
 }
-
-// Helper icon, because KeyRound is used in how-it-works
-const KeyRound = ({className}: {className?: string}) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
-  </svg>
-);
