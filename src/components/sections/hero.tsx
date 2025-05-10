@@ -24,7 +24,7 @@ export function HeroSection() {
                 </Button>
               </Link>
               <Link href="#features">
-                <Button size="lg" variant="outline" className="text-primary-foreground border-primary-foreground/50 hover:bg-primary-foreground/10 w-full min-[400px]:w-auto">
+                <Button size="lg" variant="outline" className="text-foreground w-full min-[400px]:w-auto">
                   Learn More
                 </Button>
               </Link>
@@ -41,3 +41,4 @@ export function HeroSection() {
     </section>
   );
 }
+
