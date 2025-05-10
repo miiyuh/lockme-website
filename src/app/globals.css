@@ -60,8 +60,55 @@
 }
 
 @layer base {
-  /* Removed:  * { @apply border-border; } */
   body {
     @apply bg-background text-foreground font-sans; /* Apply JetBrains Mono via font-sans */
+  }
+
+  /* Basic prose styling for blog content */
+  .prose {
+    @apply text-foreground;
+  }
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    @apply text-foreground;
+  }
+  .prose strong {
+    @apply text-foreground;
+  }
+  .prose blockquote {
+    @apply border-accent text-muted-foreground;
+  }
+  .prose code {
+    @apply bg-muted text-foreground rounded px-1 py-0.5 text-sm;
+  }
+  .prose pre {
+    @apply bg-muted p-4 rounded-md overflow-x-auto;
+  }
+  .prose pre code {
+    @apply bg-transparent p-0;
+  }
+  .prose ul > li::before {
+    @apply bg-accent;
+  }
+  .prose ol > li::before {
+    @apply text-accent;
+  }
+
+  .dark .prose {
+     @apply text-foreground;
+  }
+  .dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose h4, .dark .prose h5, .dark .prose h6 {
+    @apply text-foreground;
+  }
+  .dark .prose strong {
+    @apply text-foreground;
+  }
+  .dark .prose blockquote {
+    @apply border-accent text-muted-foreground;
+  }
+   .dark .prose code {
+    @apply bg-muted/70 text-foreground;
+  }
+  .dark .prose pre {
+    @apply bg-muted/70;
   }
 }
