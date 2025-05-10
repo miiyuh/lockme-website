@@ -1,13 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShieldCheck, Key, MousePointerSquareDashed, Laptop, WifiOff, Puzzle } from "lucide-react";
+import { ShieldCheck, Key, Laptop, WifiOff, Puzzle, MousePointerSquareDashed } from "lucide-react";
 
-// Helper icon, because KeyRound is used in how-it-works but also here.
-// Defined at the top to avoid initialization errors.
-const KeyRound = ({className}: {className?: string}) => (
+// Helper icon for KeyRound, defined at the top.
+const KeyRoundIcon = ({className}: {className?: string}) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
   </svg>
 );
+
 
 const features = [
   {
@@ -21,7 +21,7 @@ const features = [
     description: "Utilizes robust RSA cryptography for enhanced key management and security.",
   },
   {
-    icon: <KeyRound className="h-8 w-8 text-accent" />,
+    icon: <KeyRoundIcon className="h-8 w-8 text-accent" />,
     title: "Password-Based",
     description: "Secure your files with a strong password that only you know.",
   },
@@ -63,7 +63,7 @@ export function FeaturesSection() {
                 <CardTitle className="text-xl">{feature.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
               </CardContent>
             </Card>
           ))}

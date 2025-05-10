@@ -40,7 +40,7 @@ export function HowItWorksSection() {
                 <CardTitle className="text-2xl">{step.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-md">{step.description}</CardDescription>
+                <CardDescription>{step.description}</CardDescription>
               </CardContent>
             </Card>
           ))}

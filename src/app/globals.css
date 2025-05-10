@@ -61,7 +61,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground font-sans; /* Apply JetBrains Mono via font-sans */
+    @apply bg-background text-foreground font-sans leading-relaxed; /* Apply JetBrains Mono via font-sans and added leading-relaxed */
   }
 
   /* Basic prose styling for blog content */
@@ -87,10 +87,17 @@
     @apply bg-transparent p-0;
   }
   .prose ul > li::before {
-    @apply bg-accent;
+    /* Ensure bullets are circular and use accent color, matching Tailwind Typography structure if possible */
+    content: ""; /* Required for pseudo-elements */
+    position: absolute;
+    width: 0.375em; /* Tailwind Typography default size */
+    height: 0.375em; /* Tailwind Typography default size */
+    top: calc(0.875em - 0.1875em); /* Adjust vertical alignment */
+    left: 0.25em; /* Adjust horizontal alignment */
+    @apply bg-accent rounded-full;
   }
   .prose ol > li::before {
-    @apply text-accent;
+    @apply text-accent; /* This is fine for ordered list numbers */
   }
 
   .dark .prose {
@@ -110,5 +117,15 @@
   }
   .dark .prose pre {
     @apply bg-muted/70;
+  }
+  .dark .prose ul > li::before {
+    /* Ensure bullets are circular and use accent color in dark mode */
+    content: ""; /* Required for pseudo-elements */
+    position: absolute;
+    width: 0.375em; /* Tailwind Typography default size */
+    height: 0.375em; /* Tailwind Typography default size */
+    top: calc(0.875em - 0.1875em); /* Adjust vertical alignment */
+    left: 0.25em; /* Adjust horizontal alignment */
+    @apply bg-accent rounded-full;
   }
 }

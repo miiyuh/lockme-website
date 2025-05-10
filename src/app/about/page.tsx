@@ -107,7 +107,7 @@ export default function AboutPage() {
               <Shield className="h-10 w-10 text-accent mb-2" />
               <CardTitle>Rock-Solid Security</CardTitle>
             </CardHeader>
-            <CardContent className="text-center text-muted-foreground">
+            <CardContent className="text-center text-muted-foreground text-sm leading-relaxed">
               Utilizing AES-256 and RSA encryption, LockMe offers military-grade protection for your most valuable files.
             </CardContent>
           </Card>
@@ -116,7 +116,7 @@ export default function AboutPage() {
               <Eye className="h-10 w-10 text-accent mb-2" />
               <CardTitle>Complete Privacy</CardTitle>
             </CardHeader>
-            <CardContent className="text-center text-muted-foreground">
+            <CardContent className="text-center text-muted-foreground text-sm leading-relaxed">
               As an offline-first application, your files and passwords never leave your computer. No cloud, no tracking, no compromises.
             </CardContent>
           </Card>
@@ -126,7 +126,7 @@ export default function AboutPage() {
               <Zap className="h-10 w-10 text-accent mb-2" /> 
               <CardTitle>User-Friendly</CardTitle>
             </CardHeader>
-            <CardContent className="text-center text-muted-foreground">
+            <CardContent className="text-center text-muted-foreground text-sm leading-relaxed">
               Designed with simplicity in mind. Encrypt and decrypt files with an intuitive interface and drag-and-drop functionality.
             </CardContent>
           </Card>
@@ -147,7 +147,7 @@ export default function AboutPage() {
                 <p className="text-sm text-accent">{member.role}</p>
               </CardHeader>
               <CardContent className="p-6">
-                <p className="text-muted-foreground text-sm">{member.bio}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
               </CardContent>
             </Card>
           ))}
