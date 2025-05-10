@@ -1,13 +1,8 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Shield, Eye } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'About LockMe',
-  description: 'Learn more about LockMe, our mission to provide secure, offline-first file encryption, and the team behind the app.',
-};
+import { Users, Shield, Eye, Zap } from 'lucide-react'; // Assuming Zap for User-Friendly, replace if better exists or use SVG
 
 const teamMembers = [
   {
@@ -36,13 +31,42 @@ const teamMembers = [
   },
 ];
 
+const PAGE_TITLE = 'About LockMe';
+const PAGE_DESCRIPTION = 'Learn more about LockMe, our mission to provide secure, offline-first file encryption, and the team behind the app.';
+
+export const metadata: Metadata = {
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  keywords: ["LockMe team", "about LockMe", "encryption software mission", "data privacy company", "cybersecurity team"],
+  openGraph: {
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: '/about',
+    images: [
+      {
+        url: '/og-image-about.png', // Specific OG image for About page
+        width: 1200,
+        height: 630,
+        alt: 'About LockMe Team and Mission',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: ['/twitter-image-about.png'], // Specific Twitter image for About page
+  },
+};
+
 export default function AboutPage() {
   return (
     <div className="container py-12 md:py-20">
       <section className="text-center mb-16">
         <Users className="h-16 w-16 mx-auto mb-4 text-accent" />
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl mb-6">
-          About LockMe
+          {PAGE_TITLE}
         </h1>
         <p className="max-w-3xl mx-auto text-lg text-muted-foreground md:text-xl">
           Empowering you with control over your digital privacy. LockMe is dedicated to providing robust, offline-first file encryption that is both secure and easy to use.
@@ -64,10 +88,12 @@ export default function AboutPage() {
             <Image
               src="https://picsum.photos/seed/mission/800/600"
               alt="Abstract image representing security and mission"
-              layout="fill"
-              objectFit="cover"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              style={{ objectFit: 'cover' }}
               className="rounded-lg"
               data-ai-hint="security abstract"
+              priority
             />
           </div>
         </div>
@@ -96,7 +122,8 @@ export default function AboutPage() {
           </Card>
           <Card className="shadow-lg hover:shadow-xl transition-shadow">
             <CardHeader className="items-center text-center">
-             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent mb-2"><path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25" /><line x1="8" x2="8" y1="16" y2="16" /><line x1="8" x2="8" y1="20" y2="20" /><line x1="16" x2="16" y1="16" y2="16" /><line x1="16" x2="16" y1="20" y2="20" /><line x1="12" x2="12" y1="12" y2="12" /><line x1="12" x2="12" y1="16" y2="16" /><line x1="12" x2="12" y1="20" y2="20" /></svg>
+             {/* Using Zap icon for User-Friendly, consider a more direct icon if available or an SVG */}
+              <Zap className="h-10 w-10 text-accent mb-2" /> 
               <CardTitle>User-Friendly</CardTitle>
             </CardHeader>
             <CardContent className="text-center text-muted-foreground">
@@ -113,7 +140,7 @@ export default function AboutPage() {
             <Card key={member.name} className="shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
               <CardHeader className="flex flex-col items-center text-center p-6 bg-secondary/30">
                 <Avatar className="w-24 h-24 mb-4 border-2 border-accent">
-                  <AvatarImage src={member.avatarSrc} alt={member.name} data-ai-hint={member.hint} />
+                  <AvatarImage src={member.avatarSrc} alt={`${member.name} - ${member.role}`} data-ai-hint={member.hint} />
                   <AvatarFallback>{member.avatarFallback}</AvatarFallback>
                 </Avatar>
                 <CardTitle className="text-xl">{member.name}</CardTitle>

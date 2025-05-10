@@ -1,26 +1,51 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { blogPosts, BlogPost } from '@/lib/blogData.tsx';
+import { blogPosts, type BlogPost } from '@/lib/blogData'; // Corrected import type
 import { CalendarDays, UserCircle, Tag } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
+const PAGE_TITLE = 'LockMe Blog';
+const PAGE_DESCRIPTION = 'Stay informed with the latest articles, insights, and updates from the LockMe team on file security, encryption, and privacy.';
+
 export const metadata: Metadata = {
-  title: 'LockMe Blog',
-  description: 'Stay informed with the latest articles, insights, and updates from the LockMe team on file security, encryption, and privacy.',
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  keywords: ["LockMe blog", "file security articles", "encryption news", "data privacy updates", "cybersecurity insights"],
+  openGraph: {
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: '/blog',
+    images: [
+      {
+        url: '/og-image-blog.png', // Specific OG image for Blog listing page
+        width: 1200,
+        height: 630,
+        alt: 'LockMe Blog - Articles on Security and Privacy',
+      },
+    ],
+    type: 'website', // Or 'blog' if preferred
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: ['/twitter-image-blog.png'], // Specific Twitter image for Blog listing page
+  },
 };
 
 function BlogCard({ post }: { post: BlogPost }) {
   return (
     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-      <Link href={`/blog/${post.slug}`} className="block">
+      <Link href={`/blog/${post.slug}`} className="block" aria-label={`Read more about ${post.title}`}>
         <div className="relative w-full h-48 md:h-56">
           <Image
             src={post.imageSrc}
             alt={post.imageAlt}
-            layout="fill"
-            objectFit="cover"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            style={{ objectFit: 'cover' }}
             data-ai-hint={post.imageHint}
           />
         </div>
@@ -32,7 +57,7 @@ function BlogCard({ post }: { post: BlogPost }) {
         <div className="flex items-center text-xs text-muted-foreground space-x-4 mb-2">
           <div className="flex items-center">
             <CalendarDays className="h-4 w-4 mr-1.5" />
-            <span>{post.date}</span>
+            <time dateTime={new Date(post.date).toISOString().split('T')[0]}>{post.date}</time>
           </div>
           <div className="flex items-center">
             <UserCircle className="h-4 w-4 mr-1.5" />
@@ -51,7 +76,7 @@ function BlogCard({ post }: { post: BlogPost }) {
             ))}
           </div>
         )}
-        <Link href={`/blog/${post.slug}`} className="text-accent hover:text-accent/80 font-medium text-sm mt-4 inline-block">
+        <Link href={`/blog/${post.slug}`} className="text-accent hover:text-accent/80 font-medium text-sm mt-4 inline-block" aria-label={`Read more about ${post.title}`}>
           Read More &rarr;
         </Link>
       </CardContent>
@@ -64,10 +89,10 @@ export default function BlogListPage() {
     <div className="container py-12 md:py-20">
       <section className="text-center mb-12 md:mb-16">
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl mb-4">
-          LockMe Blog
+          {PAGE_TITLE}
         </h1>
         <p className="max-w-2xl mx-auto text-lg text-muted-foreground md:text-xl">
-          Insights, articles, and updates on data security, privacy, and the LockMe application.
+          {PAGE_DESCRIPTION}
         </p>
       </section>
 

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/ # Disallow genkit API routes if they exist and are not meant for public indexing
+
+Sitemap: https://lockme.example.com/sitemap.xml # Replace with your actual domain

@@ -1,8 +1,8 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getBlogPostBySlug, blogPosts } from '@/lib/blogData.tsx';
+import { getBlogPostBySlug, blogPosts } from '@/lib/blogData';
 import { ArrowLeft, CalendarDays, UserCircle, Tag } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -20,29 +20,35 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  // Fallback for image if not provided, or use a default site image
+  const imageUrl = post.imageSrc || '/default-blog-image.png'; // Ensure you have a default image
+
   return {
     title: post.title,
     description: post.excerpt,
+    keywords: post.tags ? post.tags.join(', ') : undefined,
     openGraph: {
       title: post.title,
       description: post.excerpt,
+      url: `/blog/${post.slug}`, // Relative to metadataBase in layout
       type: 'article',
-      publishedTime: new Date(post.date).toISOString(), // Ensure date is in a format parsable by Date
+      publishedTime: new Date(post.date).toISOString(),
       authors: [post.author],
       images: [
         {
-          url: post.imageSrc, // Use the actual image source
-          width: 800,
-          height: 400,
+          url: imageUrl, 
+          width: 800, // Adjust if your images have different dimensions
+          height: 400, // Adjust
           alt: post.imageAlt,
         },
       ],
+      tags: post.tags,
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: [post.imageSrc],
+      images: [imageUrl],
     },
   };
 }
@@ -72,7 +78,7 @@ export default function BlogPostPage({ params }: Props) {
           <div className="flex flex-wrap items-center text-sm text-muted-foreground space-x-4 mb-4">
             <div className="flex items-center">
               <CalendarDays className="h-4 w-4 mr-1.5" />
-              <span>{post.date}</span>
+              <time dateTime={new Date(post.date).toISOString().split('T')[0]}>{post.date}</time>
             </div>
             <div className="flex items-center">
               <UserCircle className="h-4 w-4 mr-1.5" />
@@ -80,7 +86,7 @@ export default function BlogPostPage({ params }: Props) {
             </div>
           </div>
           {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2 mb-6" aria-label="Post tags">
               {post.tags.map(tag => (
                 <Badge key={tag} variant="secondary" className="text-xs">
                  <Tag className="h-3 w-3 mr-1" /> {tag}
@@ -94,10 +100,11 @@ export default function BlogPostPage({ params }: Props) {
           <Image
             src={post.imageSrc}
             alt={post.imageAlt}
-            layout="fill"
-            objectFit="cover"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 800px, 800px" // Example sizes, adjust as needed
+            style={{ objectFit: 'cover' }}
             data-ai-hint={post.imageHint}
-            priority // Prioritize loading the main blog image
+            priority 
           />
         </div>
         

@@ -16,6 +16,14 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      // Add other domains if used for images, e.g., your actual OG image domain
+      // For example, if your OG images are hosted on the same domain:
+      // {
+      //   protocol: 'https',
+      //   hostname: 'lockme.example.com', // Replace with your actual domain
+      //   port: '',
+      //   pathname: '/**',
+      // },
     ],
   },
 };
