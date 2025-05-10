@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { DownloadCloud, Windows, ListTree } from "lucide-react"; // Using ListTree for Linux/AppImage as a generic "package" icon
+import { DownloadCloud, ListTree } from "lucide-react"; // Using ListTree for Linux/AppImage as a generic "package" icon
 
 // Lucide doesn't have a direct Linux or AppImage icon. Windows is also not directly available.
 // Using generic icons or SVGs would be better for platform-specific branding.
@@ -27,19 +27,19 @@ export function DownloadSection() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Download LockMe
           </h2>
-          <p className="max-w-[700px] text-muted-foreground md:text-lg">
+          <p className="max-w-[700px] text-muted-foreground md:text-lg lg:px-0 px-4">
             Get the latest version of LockMe for your operating system. Secure your files today!
           </p>
         </div>
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
           <div className="flex flex-col items-center gap-2">
-            <Button size="lg" className="w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow">
+            <Button size="lg" className="w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow whitespace-normal">
               <WindowsIcon /> Download for Windows (.exe)
             </Button>
             <p className="text-xs text-muted-foreground">SHA-256: <span className="select-all">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span></p>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <Button size="lg" className="w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow">
+            <Button size="lg" className="w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow whitespace-normal">
               <LinuxIcon className="mr-2 h-5 w-5" /> Download for Linux (.AppImage)
             </Button>
             <p className="text-xs text-muted-foreground">SHA-256: <span className="select-all">a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2</span></p>
