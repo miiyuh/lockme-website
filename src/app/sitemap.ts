@@ -24,6 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.7,
     },
+    {
+      url: `${BASE_URL}/privacy-policy`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
     // Add other important static routes if necessary.
     // Sections on the homepage like #download, #faq are part of the homepage URL.
   ] satisfies MetadataRoute.Sitemap;

@@ -22,13 +22,13 @@ export function Footer() {
         </div>
         <div className="flex items-center gap-4">
           <Link
-            href="/#privacy" // Replace with actual link to a privacy policy page or section
+            href="/privacy-policy" 
             className="text-sm text-muted-foreground hover:text-foreground"
           >
             Privacy Policy
           </Link>
           <Link
-            href="https://github.com/azrideveloper/LockMe" // Replace with actual GitHub repo link
+            href="https://github.com/azrideveloper/LockMe" 
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground"
