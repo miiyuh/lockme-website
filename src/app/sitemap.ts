@@ -1,3 +1,4 @@
+
 import type { MetadataRoute } from 'next';
 import { blogPosts } from '@/lib/blogData';
 
@@ -29,6 +30,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date().toISOString(),
       changeFrequency: 'yearly',
       priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/security`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/roadmap`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
     // Add other important static routes if necessary.
     // Sections on the homepage like #download, #faq are part of the homepage URL.
