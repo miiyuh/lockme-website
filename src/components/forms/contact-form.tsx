@@ -59,9 +59,17 @@ export function ContactForm() {
     if (state.status === "success") {
       toast({
         title: "Message Sent!",
-        description: state.message,
+        description: state.message || "Your message has been sent successfully.",
       });
-      form.reset(); 
+      // Defer form reset slightly to allow toast rendering to initiate properly
+      setTimeout(() => {
+        form.reset({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      }, 100);
     } else if (state.status === "error" && state.message) {
       toast({
         title: "Error",
@@ -72,7 +80,7 @@ export function ContactForm() {
         Object.keys(state.errors).forEach((key) => {
           const field = key as keyof ContactFormData;
           const message = state.errors?.[field]?.[0];
-          if (message) {
+          if (message && form.getFieldState(field)) { // Check if field exists on form
             form.setError(field, { type: "server", message });
           }
         });
@@ -83,7 +91,9 @@ export function ContactForm() {
   // This handler is called by RHF's handleSubmit after successful client-side validation.
   // It then programmatically triggers the form submission, which invokes the server action
   // passed to the <form>'s `action` prop. This ensures React's transition handling for server actions.
-  const handleValidSubmit = () => {
+  const handleValidSubmit = (data: ContactFormData) => {
+    // data is the validated form data from RHF, not directly used here
+    // as formAction will receive FormData from the form element.
     if (formRef.current) {
       formRef.current.requestSubmit();
     }
