@@ -4,8 +4,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useFormState } from "react-dom";
-import { useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef } from "react"; // Changed import
 
 import { Button } from "@/components/ui/button";
 import {
@@ -43,7 +42,8 @@ const initialState: ContactFormState = {
 };
 
 export function ContactForm() {
-  const [state, formAction] = useFormState(submitContactForm, initialState);
+  // Updated to useActionState and destructure isPending
+  const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -65,7 +65,7 @@ export function ContactForm() {
       });
       form.reset();
       if (formRef.current) {
-        formRef.current.reset(); 
+        formRef.current.reset();
       }
     } else if (state.status === "error" && state.message) {
       toast({
@@ -81,7 +81,26 @@ export function ContactForm() {
       <form
         ref={formRef}
         action={formAction}
-        onSubmit={form.handleSubmit(() => formRef.current?.requestSubmit())}
+        // onSubmit={form.handleSubmit(() => formRef.current?.requestSubmit())} // Can be simplified if RHF isn't doing much before server action
+        onSubmit={(e) => {
+            form.handleSubmit(() => {
+                // This function is called after client-side validation passes.
+                // We can directly call formAction if we pass FormData,
+                // or let the native form submission proceed.
+                // For this specific setup where `action` prop is used,
+                // we can let RHF do its validation, then if it passes,
+                // the formAction will be called due to native form submission triggered by `type="submit"` button.
+                // If RHF `handleSubmit` is used, it prevents default and calls its own submit handler.
+                // To make `action` work with RHF, it's common to call `formRef.current.requestSubmit()`
+                // or pass `formData` directly to `formAction`.
+                // Let's stick to `requestSubmit` to ensure native `action` is triggered.
+                if (formRef.current) {
+                  // Create FormData from the form
+                  const formData = new FormData(formRef.current);
+                  formAction(formData); // Directly call the server action with FormData
+                }
+            })(e);
+        }}
         className="space-y-6 w-full max-w-lg"
       >
         <FormField
@@ -141,17 +160,18 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button 
-          type="submit" 
-          size="lg" 
+        <Button
+          type="submit"
+          size="lg"
           className="w-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow"
-          disabled={form.formState.isSubmitting || state.status === 'submitting'}
-          aria-disabled={form.formState.isSubmitting || state.status === 'submitting'}
+          disabled={isPending} // Use isPending from useActionState
+          aria-disabled={isPending} // Use isPending from useActionState
         >
-           {(form.formState.isSubmitting || state.status === 'submitting') && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+           {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Send Message
         </Button>
       </form>
     </Form>
   );
 }
+
