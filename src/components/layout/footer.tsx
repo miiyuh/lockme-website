@@ -11,7 +11,7 @@ export function Footer() {
         <div className="flex flex-col items-center gap-4 md:flex-row md:gap-3">
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="https://lockme.my/logo_lockme_highRESver.png"
+              src="https://lockme.my/assets/img/logo_lockme_highRESver.png"
               alt="LockMe Logo"
               width={63} 
               height={32}
