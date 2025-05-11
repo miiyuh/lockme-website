@@ -101,7 +101,7 @@ export function ContactForm() {
                 }
             })(e);
         }}
-        className="space-y-6 w-full max-w-lg"
+        className="space-y-6 w-full max-w-lg text-left"
       >
         <FormField
           control={form.control}
