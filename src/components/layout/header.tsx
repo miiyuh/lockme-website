@@ -10,7 +10,7 @@ export function Header() {
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <Image
-            src="https://lockme.my/logo_lockme_highRESver.png"
+            src="https://lockme.my/assets/img/logo_lockme_highRESver.png"
             alt="LockMe Logo"
             width={63} 
             height={32}
