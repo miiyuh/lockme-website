@@ -38,12 +38,14 @@ type ContactFormData = z.infer<typeof formSchema>;
 const initialState: ContactFormState = {
   message: "",
   status: "idle",
+  errors: undefined,
 };
 
 export function ContactForm() {
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
+  const prevIsPending = useRef(isPending);
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(formSchema),
@@ -56,49 +58,56 @@ export function ContactForm() {
   });
 
   useEffect(() => {
-    if (state.status === "success") {
-      toast({
-        title: "Message Sent!",
-        description: state.message || "Your message has been sent successfully.",
-      });
-      // Defer form reset slightly to allow toast rendering to initiate properly
-      setTimeout(() => {
-        form.reset({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
+    // Only act when isPending transitions from true to false (action finished)
+    if (prevIsPending.current && !isPending) {
+      if (state.status === "success") {
+        toast({
+          title: "Message Sent!",
+          description: state.message || "Your message has been sent successfully.",
         });
-      }, 100);
-    } else if (state.status === "error" && state.message) {
-      toast({
-        title: "Error",
-        description: state.message,
-        variant: "destructive",
-      });
-      if (state.errors) {
-        Object.keys(state.errors).forEach((key) => {
-          const field = key as keyof ContactFormData;
-          const message = state.errors?.[field]?.[0];
-          if (message && form.getFieldState(field)) { // Check if field exists on form
-            form.setError(field, { type: "server", message });
-          }
+        form.reset({ name: "", email: "", subject: "", message: "" });
+      } else if (state.status === "error" && state.message) {
+        toast({
+          title: "Error",
+          description: state.message,
+          variant: "destructive",
         });
+        if (state.errors) {
+          (Object.keys(state.errors) as Array<keyof ContactFormData>).forEach((fieldKey) => {
+            const fieldErrorMessages = state.errors?.[fieldKey];
+            if (fieldErrorMessages && fieldErrorMessages.length > 0) {
+              const firstMessage = fieldErrorMessages[0];
+              // Check if the field is actually part of the form schema to avoid errors
+              // and is registered with react-hook-form
+              if (fieldKey in form.getValues() && form.getFieldState(fieldKey).error === undefined) { 
+                form.setError(fieldKey, { type: 'server', message: firstMessage });
+              }
+            }
+          });
+        }
       }
     }
-  }, [state, toast, form]);
+    // Update prevIsPending ref after current effect execution
+    prevIsPending.current = isPending;
+  }, [isPending, state, toast, form]);
+
 
   // This handler is called by RHF's handleSubmit after successful client-side validation.
   // It then programmatically triggers the form submission, which invokes the server action
   // passed to the <form>'s `action` prop. This ensures React's transition handling for server actions.
   const handleValidSubmit = (data: ContactFormData) => {
-    // data is the validated form data from RHF, not directly used here
-    // as formAction will receive FormData from the form element.
+    // data is the validated form data from RHF.
+    // We call formAction with FormData obtained from the form element.
     if (formRef.current) {
+      const formData = new FormData(formRef.current);
+      // Manually trigger the action tied to useActionState
+      // This does not need startTransition as useActionState handles it.
+      // However, typically this is done via form's action prop.
+      // For RHF + Server Action, programmatic submission is needed if you want RHF validation first.
       formRef.current.requestSubmit();
     }
   };
-
+  
   return (
     <Form {...form}>
       <form
