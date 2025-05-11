@@ -1,10 +1,9 @@
-
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useActionState, useEffect, useRef } from "react"; // Changed import
+import { useActionState, useEffect, useRef } from "react"; 
 
 import { Button } from "@/components/ui/button";
 import {
@@ -42,7 +41,6 @@ const initialState: ContactFormState = {
 };
 
 export function ContactForm() {
-  // Updated to useActionState and destructure isPending
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
@@ -63,44 +61,43 @@ export function ContactForm() {
         title: "Message Sent!",
         description: state.message,
       });
-      form.reset();
-      if (formRef.current) {
-        formRef.current.reset();
-      }
+      form.reset(); // Reset RHF fields
+      // formRef.current?.reset(); // Reset native form fields - RHF reset should suffice
     } else if (state.status === "error" && state.message) {
+      // Display main error message
       toast({
         title: "Error",
         description: state.message,
         variant: "destructive",
       });
+      // Display field-specific errors from server action
+      if (state.errors) {
+        Object.keys(state.errors).forEach((key) => {
+          const field = key as keyof ContactFormData;
+          const message = state.errors?.[field]?.[0];
+          if (message) {
+            form.setError(field, { type: "server", message });
+          }
+        });
+      }
     }
   }, [state, toast, form]);
+
+  // This handler is called by RHF after successful client-side validation
+  const handleValidSubmit = () => {
+    if (formRef.current) {
+      // Programmatically submit the form. This will invoke the `action`
+      // specified on the <form> tag, which is `formAction` from useActionState.
+      formRef.current.requestSubmit();
+    }
+  };
 
   return (
     <Form {...form}>
       <form
         ref={formRef}
-        action={formAction}
-        // onSubmit={form.handleSubmit(() => formRef.current?.requestSubmit())} // Can be simplified if RHF isn't doing much before server action
-        onSubmit={(e) => {
-            form.handleSubmit(() => {
-                // This function is called after client-side validation passes.
-                // We can directly call formAction if we pass FormData,
-                // or let the native form submission proceed.
-                // For this specific setup where `action` prop is used,
-                // we can let RHF do its validation, then if it passes,
-                // the formAction will be called due to native form submission triggered by `type="submit"` button.
-                // If RHF `handleSubmit` is used, it prevents default and calls its own submit handler.
-                // To make `action` work with RHF, it's common to call `formRef.current.requestSubmit()`
-                // or pass `formData` directly to `formAction`.
-                // Let's stick to `requestSubmit` to ensure native `action` is triggered.
-                if (formRef.current) {
-                  // Create FormData from the form
-                  const formData = new FormData(formRef.current);
-                  formAction(formData); // Directly call the server action with FormData
-                }
-            })(e);
-        }}
+        action={formAction} // Server action from useActionState
+        onSubmit={form.handleSubmit(handleValidSubmit)} // RHF validation handler for client-side validation
         className="space-y-6 w-full max-w-lg text-left"
       >
         <FormField
@@ -112,7 +109,8 @@ export function ContactForm() {
               <FormControl>
                 <Input placeholder="Your Name" {...field} className="bg-background/80 placeholder:text-muted-foreground/70" />
               </FormControl>
-              <FormMessage>{state.errors?.name?.[0]}</FormMessage>
+              {/* RHF will display client-side errors. Server errors handled by useEffect */}
+              <FormMessage /> 
             </FormItem>
           )}
         />
@@ -125,7 +123,7 @@ export function ContactForm() {
               <FormControl>
                 <Input type="email" placeholder="your.email@example.com" {...field} className="bg-background/80 placeholder:text-muted-foreground/70" />
               </FormControl>
-              <FormMessage>{state.errors?.email?.[0]}</FormMessage>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -138,7 +136,7 @@ export function ContactForm() {
               <FormControl>
                 <Input placeholder="Regarding..." {...field} className="bg-background/80 placeholder:text-muted-foreground/70" />
               </FormControl>
-               <FormMessage>{state.errors?.subject?.[0]}</FormMessage>
+               <FormMessage />
             </FormItem>
           )}
         />
@@ -156,16 +154,16 @@ export function ContactForm() {
                   className="bg-background/80 placeholder:text-muted-foreground/70"
                 />
               </FormControl>
-              <FormMessage>{state.errors?.message?.[0]}</FormMessage>
+              <FormMessage />
             </FormItem>
           )}
         />
         <Button
-          type="submit"
+          type="submit" // This button click triggers RHF's handleSubmit
           size="lg"
           className="w-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow"
-          disabled={isPending} // Use isPending from useActionState
-          aria-disabled={isPending} // Use isPending from useActionState
+          disabled={isPending} 
+          aria-disabled={isPending} 
         >
            {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Send Message
@@ -173,5 +171,3 @@ export function ContactForm() {
       </form>
     </Form>
   );
-}
-
