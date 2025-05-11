@@ -2,10 +2,10 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 
 const screenshots = [
-  { src: "https://picsum.photos/seed/lockme1/600/400", alt: "LockMe App Screenshot 1 - Main Interface", hint: "app interface" },
-  { src: "https://picsum.photos/seed/lockme2/600/400", alt: "LockMe App Screenshot 2 - Encryption Process", hint: "encryption process" },
-  { src: "https://picsum.photos/seed/lockme3/600/400", alt: "LockMe App Screenshot 3 - File Selection", hint: "file selection" },
-  { src: "https://picsum.photos/seed/lockme4/600/400", alt: "LockMe App Screenshot 4 - Settings Page", hint: "settings page" },
+  { src: "https://lockme.my/assets/img/screenshots/screenshot_main.png", alt: "LockMe App Screenshot 1 - Main Dashboard", hint: "app interface" },
+  { src: "https://lockme.my/assets/img/screenshots/screenshot_encrypt.png", alt: "LockMe App Screenshot 2 - Encryption Process", hint: "encryption process" },
+  { src: "https://lockme.my/assets/img/screenshots/screenshot_decrypt.png", alt: "LockMe App Screenshot 3 - Decryption Process", hint: "decryption process" },
+  { src: "https://lockme.my/assets/img/screenshots/screenshot_ai.png", alt: "LockMe App Screenshot 4 - AI Security Toolkit", hint: "security toolkit page" },
 ];
 
 export function ScreenshotsSection() {
