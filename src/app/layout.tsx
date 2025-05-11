@@ -1,4 +1,3 @@
-
 import type { Metadata, Viewport } from 'next';
 import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
@@ -17,10 +16,10 @@ const jetbrainsMono = JetBrains_Mono({
 
 const APP_NAME = "LockMe: Secure File Encryption and Decryption";
 const APP_DESCRIPTION = "Secure your files with LockMe, the offline-first desktop app for AES-256 and RSA encryption. No cloud, no compromise. Download for Windows & Linux.";
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lockme.example.com"; // Use environment variable for base URL
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lockme.example.com"; 
 
 export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL), // Important for resolving relative Open Graph image paths
+  metadataBase: new URL(BASE_URL), 
   title: {
     default: APP_NAME,
     template: `%s | ${APP_NAME}`,
@@ -37,12 +36,12 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    url: "/", // Relative to metadataBase
+    url: "/", 
     title: APP_NAME,
     description: APP_DESCRIPTION,
     images: [
       {
-        url: "/og-image.png", // Replace with actual OG image path (e.g., /public/og-image.png)
+        url: "/og-image.png", 
         width: 1200,
         height: 630,
         alt: "LockMe App Promotion",
@@ -56,14 +55,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: APP_NAME,
     description: APP_DESCRIPTION,
-    images: ["/twitter-image.png"], // Replace with actual Twitter image path (e.g., /public/twitter-image.png)
-    // creator: "@yourtwitterhandle", // Optional: add Twitter handle
+    images: ["/twitter-image.png"], 
   },
-  // icons: { // Add favicon links here if you have them and they are in /public
-  //   icon: "/favicon.ico",
-  //   apple: "/apple-touch-icon.png",
-  // },
-  robots: { // Default robot settings, can be overridden per page
+  robots: { 
     index: true,
     follow: true,
     googleBot: {
@@ -106,7 +100,7 @@ export default function RootLayout({
         >
           <div className="relative flex min-h-dvh flex-col bg-background">
             <Header />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 pt-4 pb-8 md:pt-6 md:pb-12">{children}</main>
             <Footer />
           </div>
           <Toaster />

@@ -33,38 +33,38 @@ export function TestimonialsSection() {
   return (
     <section id="testimonials" className="w-full py-16 md:py-24 lg:py-32 bg-secondary text-secondary-foreground">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10 md:mb-12">
           <Quote className="h-12 w-12 text-accent" />
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             What Our Users Say
           </h2>
-          <p className="max-w-[700px] text-muted-foreground md:text-lg">
+          <p className="max-w-[700px] text-muted-foreground text-md md:text-lg">
             Hear from people who trust LockMe to protect their valuable data.
           </p>
         </div>
-        <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-3">
+        <div className="grid gap-6 md:gap-8 md:grid-cols-1 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <Card key={index} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card text-card-foreground">
-              <CardHeader className="p-6">
+              <CardHeader className="p-4 sm:p-6">
                 <div className="flex items-center mb-2">
                   {Array(5).fill(0).map((_, i) => (
                     <Star
                       key={i}
-                      className={`h-5 w-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-muted-foreground/50'}`}
+                      className={`h-4 w-4 sm:h-5 sm:w-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-muted-foreground/50'}`}
                     />
                   ))}
                 </div>
-                <Quote className="w-8 h-8 text-accent/50 mb-2 transform scale-x-[-1]" />
-                <p className="text-muted-foreground leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
+                <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-accent/50 mb-2 transform scale-x-[-1]" />
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
               </CardHeader>
-              <CardContent className="p-6 pt-0 mt-auto">
+              <CardContent className="p-4 sm:p-6 pt-0 mt-auto">
                 <div className="flex items-center">
-                  <Avatar className="h-12 w-12 mr-4 border-2 border-accent">
-                    <AvatarImage src={testimonial.avatarSrc} alt={testimonial.name} data-ai-hint={testimonial.hint} />
+                  <Avatar className="h-10 w-10 sm:h-12 sm:w-12 mr-3 sm:mr-4 border-2 border-accent">
+                    <AvatarImage src={testimonial.avatarSrc} alt={testimonial.name} data-ai-hint={testimonial.hint} loading="lazy" />
                     <AvatarFallback>{testimonial.avatarFallback}</AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="font-semibold text-card-foreground">{testimonial.name}</p>
+                    <p className="font-semibold text-sm sm:text-base text-card-foreground">{testimonial.name}</p>
                   </div>
                 </div>
               </CardContent>

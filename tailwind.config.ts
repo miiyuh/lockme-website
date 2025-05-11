@@ -12,13 +12,14 @@ export default {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1rem',
+        DEFAULT: '1rem', // Default padding for mobile
         sm: '2rem',
-        lg: '4rem',
-        xl: '5rem',
-        '2xl': '6rem',
+        md: '3rem', // Added medium breakpoint padding
+        lg: '4rem', // Adjusted for larger screens
+        xl: '5rem', // Adjusted for larger screens
+        '2xl': '6rem', // Adjusted for larger screens
       },
-      screens: { // Re-apply default Tailwind screens or customize as needed
+      screens: { 
         sm: "640px",
         md: "768px",
         lg: "1024px",

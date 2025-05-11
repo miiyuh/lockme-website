@@ -12,10 +12,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    url: '/privacy-policy', // This will be relative to metadataBase in layout.tsx
+    url: '/privacy-policy', 
     images: [
       {
-        url: '/og-image-privacy.png', // Assuming this image is in /public
+        url: '/og-image-privacy.png', 
         width: 1200,
         height: 630,
         alt: 'LockMe Privacy Policy',
@@ -27,10 +27,14 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/twitter-image-privacy.png'], // Assuming this image is in /public
+    images: ['/twitter-image-privacy.png'], 
   },
 };
 
 export default function PrivacyPolicyPage() {
-  return <PrivacyPolicyClientContent />;
+  return (
+    <div className="container py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+      <PrivacyPolicyClientContent />
+    </div>
+  );
 }

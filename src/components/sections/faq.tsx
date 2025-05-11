@@ -38,12 +38,12 @@ export function FaqSection() {
   return (
     <section id="faq" className="w-full py-16 md:py-24 lg:py-32 bg-background">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10 md:mb-12">
           <HelpCircle className="h-12 w-12 text-accent" />
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Frequently Asked Questions
           </h2>
-          <p className="max-w-[700px] text-muted-foreground md:text-lg">
+          <p className="max-w-[700px] text-muted-foreground text-md md:text-lg">
             Find answers to common questions about LockMe.
           </p>
         </div>
@@ -51,10 +51,10 @@ export function FaqSection() {
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
               <AccordionItem value={`item-${index}`} key={index}>
-                <AccordionTrigger className="text-lg hover:no-underline text-left">
+                <AccordionTrigger className="text-md sm:text-lg hover:no-underline text-left py-3 sm:py-4">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-base text-muted-foreground leading-relaxed">
+                <AccordionContent className="text-sm sm:text-base text-muted-foreground leading-relaxed pb-3 sm:pb-4">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

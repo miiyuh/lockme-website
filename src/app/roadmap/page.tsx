@@ -1,11 +1,11 @@
 
-
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Rocket, Lightbulb, ListChecks, CircleAlert } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 
 const PAGE_TITLE = 'LockMe Roadmap';
 const PAGE_DESCRIPTION = 'Discover the future of LockMe. See our planned features, ongoing developments, and long-term vision for enhancing your file security experience.';
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: '/roadmap',
     images: [
       {
-        url: '/og-image-roadmap.png', // Ensure you have this image
+        url: '/og-image-roadmap.png', 
         width: 1200,
         height: 630,
         alt: 'LockMe Development Roadmap',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/twitter-image-roadmap.png'], // Ensure you have this image
+    images: ['/twitter-image-roadmap.png'], 
   },
 };
 
@@ -112,22 +112,22 @@ const getStatusColor = (status: string) => {
 
 export default function RoadmapPage() {
   return (
-    <div className="container py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
-      <section className="text-center mb-12 md:mb-16">
+    <div className="container py-10 md:py-16 lg:py-20">
+      <section className="text-center mb-10 md:mb-16">
         <Rocket className="h-12 w-12 md:h-16 md:w-16 mx-auto mb-4 text-accent" />
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl mb-6">
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-4">
           {PAGE_TITLE}
         </h1>
-        <p className="max-w-3xl mx-auto text-lg text-muted-foreground md:text-xl">
+        <p className="max-w-3xl mx-auto text-md text-muted-foreground md:text-lg">
           We are constantly working to improve LockMe and add new features to enhance your security and user experience. Here&apos;s a look at what we have planned.
         </p>
       </section>
 
-      <section className="mb-12 md:mb-16">
-        <div className="flex flex-col items-center justify-center p-6 mb-10 border rounded-lg shadow-md bg-secondary/30">
-            <CircleAlert className="h-10 w-10 text-accent mb-3" />
-            <h3 className="text-xl font-semibold mb-2 text-center">Disclaimer</h3>
-            <p className="text-sm text-muted-foreground text-center max-w-2xl">
+      <section className="mb-10 md:mb-16">
+        <div className="flex flex-col items-center justify-center p-4 sm:p-6 mb-8 md:mb-10 border rounded-lg shadow-md bg-secondary/30">
+            <CircleAlert className="h-8 w-8 sm:h-10 sm:w-10 text-accent mb-2 sm:mb-3" />
+            <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2 text-center">Disclaimer</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground text-center max-w-2xl">
                 This roadmap is for informational purposes only and is subject to change without notice.
                 The development, release, and timing of any features or functionality described remains at our sole discretion.
                 Do not rely on this roadmap in making purchasing decisions.
@@ -135,26 +135,26 @@ export default function RoadmapPage() {
         </div>
 
         {Object.entries(roadmapItems).map(([term, items]) => (
-          <div key={term} className="mb-12">
-            <h2 className="text-3xl font-semibold mb-2 capitalize text-center md:text-left">
+          <div key={term} className="mb-10 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-semibold mb-2 capitalize text-center md:text-left">
               {term === 'shortTerm' ? 'Short-Term Goals (Next 3-6 Months)' : term === 'mediumTerm' ? 'Mid-Term Goals (6-12 Months)' : 'Long-Term Vision (12+ Months)'}
             </h2>
-            <Separator className="mb-8" />
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <Separator className="mb-6 md:mb-8" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {items.map((item, index) => (
                 <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow flex flex-col">
-                  <CardHeader className="flex flex-row items-start gap-4 space-y-0 pb-3">
-                    <div className="p-1 rounded-md bg-accent/10">{item.icon}</div>
+                  <CardHeader className="flex flex-row items-start gap-3 sm:gap-4 space-y-0 pb-2 sm:pb-3 p-4 sm:p-5">
+                    <div className="p-1 rounded-md bg-accent/10 mt-1">{item.icon}</div>
                     <div className="flex-1">
-                      <CardTitle className="text-lg md:text-xl mb-1">{item.title}</CardTitle>
+                      <CardTitle className="text-md sm:text-lg md:text-xl mb-1">{item.title}</CardTitle>
                        <Badge variant="outline" className={`text-xs font-medium ${getStatusColor(item.status)}`}>{item.status}</Badge>
                     </div>
                   </CardHeader>
-                  <CardContent className="flex-grow">
+                  <CardContent className="flex-grow p-4 sm:p-5 pt-0">
                     <CardDescription className="text-sm leading-relaxed text-muted-foreground">{item.description}</CardDescription>
                   </CardContent>
                    {item.tags && item.tags.length > 0 && (
-                    <CardContent className="pt-2 pb-4">
+                    <CardContent className="pt-2 pb-4 sm:pb-5 px-4 sm:px-5">
                         <div className="flex flex-wrap gap-2">
                         {item.tags.map(tag => (
                             <Badge key={tag} variant="secondary" className="text-xs">{tag}</Badge>
@@ -170,16 +170,15 @@ export default function RoadmapPage() {
       </section>
 
       <section className="text-center">
-        <h2 className="text-2xl font-semibold mb-4">Have a Suggestion?</h2>
-        <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Have a Suggestion?</h2>
+        <p className="text-muted-foreground mb-4 sm:mb-6 max-w-xl mx-auto text-sm sm:text-base">
           We value your feedback! If you have ideas for new features or improvements, please feel free to share them with us.
         </p>
-        <a
-          href="mailto:support@lockme.my?subject=LockMe%20Feature%20Suggestion"
-          className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-        >
-          Suggest a Feature
-        </a>
+        <Button asChild size="lg" className="text-sm">
+            <a href="mailto:support@lockme.my?subject=LockMe%20Feature%20Suggestion">
+             Suggest a Feature
+            </a>
+        </Button>
       </section>
     </div>
   );

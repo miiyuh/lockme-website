@@ -38,43 +38,41 @@ export function DownloadSection() {
             Get the latest version of LockMe for your operating system. Secure your files today!
           </p>
         </div>
-        <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
-          <div className="flex flex-col items-center gap-2 w-full sm:w-auto">
+        <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-12">
+          <div className="flex flex-col items-center gap-2 w-full max-w-xs sm:w-auto">
             <Button size="lg" className="w-full sm:w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow whitespace-normal h-auto py-3">
               <WindowsIcon /> Download for Windows (.exe)
             </Button>
-            <div className="flex items-center text-xs text-muted-foreground">
-              SHA-256:
+            <div className="flex items-center gap-1 text-xs text-muted-foreground break-all px-2">
+              <span>SHA-256: <span className="select-all">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span></span>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Info className="h-3.5 w-3.5 ml-1 cursor-help" />
+                    <Info className="h-3 w-3 cursor-help flex-shrink-0" />
                   </TooltipTrigger>
-                  <TooltipContent className="max-w-xs">
-                    <p>A SHA-256 hash is a unique digital fingerprint for a file. You can use it to verify that the downloaded file has not been tampered with and is the official release.</p>
+                  <TooltipContent className="max-w-xs text-sm">
+                    <p>A SHA-256 hash is a cryptographic checksum. You can use it to verify that the downloaded file has not been tampered with or corrupted. After downloading, you can generate the SHA-256 hash of the file on your computer and compare it to this value.</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-              <span className="ml-1 select-all">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span>
             </div>
           </div>
-          <div className="flex flex-col items-center gap-2 w-full sm:w-auto">
+          <div className="flex flex-col items-center gap-2 w-full max-w-xs sm:w-auto">
             <Button size="lg" className="w-full sm:w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow whitespace-normal h-auto py-3">
               <LinuxIcon /> Download for Linux (.AppImage)
             </Button>
-             <div className="flex items-center text-xs text-muted-foreground">
-              SHA-256:
+            <div className="flex items-center gap-1 text-xs text-muted-foreground break-all px-2">
+              <span>SHA-256: <span className="select-all">a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2</span></span>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Info className="h-3.5 w-3.5 ml-1 cursor-help" />
+                    <Info className="h-3 w-3 cursor-help flex-shrink-0" />
                   </TooltipTrigger>
-                  <TooltipContent className="max-w-xs">
-                    <p>A SHA-256 hash is a unique digital fingerprint for a file. You can use it to verify that the downloaded file has not been tampered with and is the official release.</p>
+                  <TooltipContent className="max-w-xs text-sm">
+                    <p>A SHA-256 hash is a cryptographic checksum. You can use it to verify that the downloaded file has not been tampered with or corrupted. After downloading, you can generate the SHA-256 hash of the file on your computer and compare it to this value.</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-              <span className="ml-1 select-all">a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2</span>
             </div>
           </div>
         </div>

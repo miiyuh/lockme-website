@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next';
 import { blogPosts } from '@/lib/blogData';
 
 // Ensure NEXT_PUBLIC_BASE_URL is set in your environment variables (e.g., .env.local or Vercel/Netlify settings)
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://lockme.example.com'; // Fallback, but ideally set via env
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://lockme.my'; // Fallback, but ideally set via env
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
