@@ -1,4 +1,3 @@
-
 'use server';
 
 import { z } from 'zod';
@@ -42,27 +41,28 @@ export async function submitContactForm(
 
   const { name, email, subject, message } = validatedFields.data;
 
-  // In a real application, you would send an email here.
-  // For now, we'll just log it and simulate success.
-  console.log('Contact form submission:');
-  console.log('Name:', name);
-  console.log('Email:', email);
+  // In a real application, you would integrate an email service (e.g., SendGrid, Resend, Nodemailer) here
+  // to send an email to support@lockme.my with the details below.
+  console.log('Simulating contact form submission:');
+  console.log('Recipient: support@lockme.my');
+  console.log('From Name:', name);
+  console.log('From Email:', email);
   console.log('Subject:', subject);
   console.log('Message:', message);
 
   // Simulate email sending delay
   await new Promise(resolve => setTimeout(resolve, 1000));
 
-  // Simulate potential error
-  // if (Math.random() > 0.5) {
+  // Simulate potential error for testing
+  // if (Math.random() > 0.8) { // Lower probability for demo purposes
   //   return {
-  //     message: 'Failed to send message. Please try again later.',
+  //     message: 'Simulated error: Failed to send message. Please try again later.',
   //     status: 'error',
   //   };
   // }
 
   return {
-    message: 'Thank you for your message! We will get back to you soon.',
+    message: 'Thank you for your message! We will get back to you soon at the email address you provided.',
     status: 'success',
   };
 }

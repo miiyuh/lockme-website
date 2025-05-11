@@ -61,16 +61,13 @@ export function ContactForm() {
         title: "Message Sent!",
         description: state.message,
       });
-      form.reset(); // Reset RHF fields
-      // formRef.current?.reset(); // Reset native form fields - RHF reset should suffice
+      form.reset(); 
     } else if (state.status === "error" && state.message) {
-      // Display main error message
       toast({
         title: "Error",
         description: state.message,
         variant: "destructive",
       });
-      // Display field-specific errors from server action
       if (state.errors) {
         Object.keys(state.errors).forEach((key) => {
           const field = key as keyof ContactFormData;
@@ -83,11 +80,11 @@ export function ContactForm() {
     }
   }, [state, toast, form]);
 
-  // This handler is called by RHF after successful client-side validation
+  // This handler is called by RHF's handleSubmit after successful client-side validation.
+  // It then programmatically triggers the form submission, which invokes the server action
+  // passed to the <form>'s `action` prop. This ensures React's transition handling for server actions.
   const handleValidSubmit = () => {
     if (formRef.current) {
-      // Programmatically submit the form. This will invoke the `action`
-      // specified on the <form> tag, which is `formAction` from useActionState.
       formRef.current.requestSubmit();
     }
   };
@@ -97,7 +94,7 @@ export function ContactForm() {
       <form
         ref={formRef}
         action={formAction} // Server action from useActionState
-        onSubmit={form.handleSubmit(handleValidSubmit)} // RHF validation handler for client-side validation
+        onSubmit={form.handleSubmit(handleValidSubmit)} // RHF validation first, then calls handleValidSubmit
         className="space-y-6 w-full max-w-lg text-left"
       >
         <FormField
@@ -109,7 +106,6 @@ export function ContactForm() {
               <FormControl>
                 <Input placeholder="Your Name" {...field} className="bg-background/80 placeholder:text-muted-foreground/70" />
               </FormControl>
-              {/* RHF will display client-side errors. Server errors handled by useEffect */}
               <FormMessage /> 
             </FormItem>
           )}
@@ -159,7 +155,7 @@ export function ContactForm() {
           )}
         />
         <Button
-          type="submit" // This button click triggers RHF's handleSubmit
+          type="submit" // This button click triggers RHF's handleSubmit via the form's onSubmit
           size="lg"
           className="w-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow"
           disabled={isPending} 
@@ -171,3 +167,4 @@ export function ContactForm() {
       </form>
     </Form>
   );
+}
