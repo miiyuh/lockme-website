@@ -1,3 +1,4 @@
+
 import type { Metadata, Viewport } from 'next';
 import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
@@ -5,6 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from "@/components/ui/toaster";
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
+import { CookieConsentBanner } from '@/components/layout/cookie-consent-banner';
 import { cn } from '@/lib/utils';
 
 const jetbrainsMono = JetBrains_Mono({
@@ -108,6 +110,7 @@ export default function RootLayout({
             <Footer />
           </div>
           <Toaster />
+          <CookieConsentBanner />
         </ThemeProvider>
       </body>
     </html>

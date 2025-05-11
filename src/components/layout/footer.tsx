@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Github } from 'lucide-react';
@@ -14,13 +15,20 @@ export function Footer() {
               alt="LockMe Logo"
               width={63} 
               height={32}
+              priority
             />
           </Link>
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            &copy; {currentYear} LockMe. All rights reserved. <br className="sm:hidden" /> App Version: v1.0.0-beta.
+            &copy; {currentYear} LockMe. App v1.0.0-beta.
           </p>
         </div>
         <div className="flex items-center gap-4">
+          <Link
+            href="/terms-of-service"
+            className="text-sm text-muted-foreground hover:text-foreground"
+          >
+            Terms of Service
+          </Link>
           <Link
             href="/privacy-policy" 
             className="text-sm text-muted-foreground hover:text-foreground"

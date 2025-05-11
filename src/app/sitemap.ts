@@ -32,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
     {
+      url: `${BASE_URL}/terms-of-service`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
+    {
       url: `${BASE_URL}/security`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'monthly',
