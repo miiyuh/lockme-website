@@ -1,6 +1,7 @@
 'use server';
 
 import { z } from 'zod';
+import nodemailer from 'nodemailer';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -41,28 +42,33 @@ export async function submitContactForm(
 
   const { name, email, subject, message } = validatedFields.data;
 
-  // In a real application, you would integrate an email service (e.g., SendGrid, Resend, Nodemailer) here
-  // to send an email to support@lockme.my with the details below.
-  console.log('Simulating contact form submission:');
-  console.log('Recipient: support@lockme.my');
-  console.log('From Name:', name);
-  console.log('From Email:', email);
-  console.log('Subject:', subject);
-  console.log('Message:', message);
+  try {
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: true,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
 
-  // Simulate email sending delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
+    await transporter.sendMail({
+      from: `"${name}" <${email}>`,
+      to: 'support@lockme.my',
+      subject: subject || 'New Contact Form Submission',
+      text: message,
+    });
 
-  // Simulate potential error for testing
-  // if (Math.random() > 0.8) { // Lower probability for demo purposes
-  //   return {
-  //     message: 'Simulated error: Failed to send message. Please try again later.',
-  //     status: 'error',
-  //   };
-  // }
-
-  return {
-    message: 'Thank you for your message! We will get back to you soon at the email address you provided.',
-    status: 'success',
-  };
+    return {
+      message: 'Thank you for your message! We will get back to you soon.',
+      status: 'success',
+    };
+  } catch (error) {
+    console.error('Failed to send email:', error);
+    return {
+      message: 'Something went wrong while sending your message. Please try again later.',
+      status: 'error',
+    };
+  }
 }

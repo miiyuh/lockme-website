@@ -39,8 +39,8 @@ export function DownloadSection() {
           </p>
         </div>
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
-          <div className="flex flex-col items-center gap-2">
-            <Button size="lg" className="w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow whitespace-normal h-auto py-3">
+          <div className="flex flex-col items-center gap-2 w-full sm:w-auto">
+            <Button size="lg" className="w-full sm:w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow whitespace-normal h-auto py-3">
               <WindowsIcon /> Download for Windows (.exe)
             </Button>
             <div className="flex items-center text-xs text-muted-foreground">
@@ -58,8 +58,8 @@ export function DownloadSection() {
               <span className="ml-1 select-all">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span>
             </div>
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <Button size="lg" className="w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow whitespace-normal h-auto py-3">
+          <div className="flex flex-col items-center gap-2 w-full sm:w-auto">
+            <Button size="lg" className="w-full sm:w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow whitespace-normal h-auto py-3">
               <LinuxIcon /> Download for Linux (.AppImage)
             </Button>
              <div className="flex items-center text-xs text-muted-foreground">

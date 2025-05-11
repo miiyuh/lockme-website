@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -46,9 +45,9 @@ export function CookieConsentBanner() {
       aria-describedby="cookie-consent-description"
     >
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-start md:items-center gap-3">
+        <div className="flex items-start md:items-center gap-3 text-left md:text-left w-full md:flex-1">
           <Cookie className="h-8 w-8 md:h-6 md:w-6 text-accent flex-shrink-0 mt-1 md:mt-0" />
-          <div>
+          <div className="flex-1">
             <h2 id="cookie-consent-title" className="text-base md:text-lg font-semibold">Our Cookie Policy</h2>
             <p id="cookie-consent-description" className="text-xs md:text-sm text-muted-foreground">
               We use cookies to enhance your browsing experience and analyze site traffic. By clicking &quot;Accept&quot;, you consent to our use of cookies.
