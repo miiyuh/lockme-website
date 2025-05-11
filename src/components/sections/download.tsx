@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { DownloadCloud, ListTree } from "lucide-react"; 
+import { DownloadCloud, ListTree, Info } from "lucide-react"; 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const WindowsIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 h-5 w-5" aria-hidden="true">
@@ -37,13 +43,39 @@ export function DownloadSection() {
             <Button size="lg" className="w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow whitespace-normal h-auto py-3">
               <WindowsIcon /> Download for Windows (.exe)
             </Button>
-            <p className="text-xs text-muted-foreground">SHA-256: <span className="select-all">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span></p>
+            <div className="flex items-center text-xs text-muted-foreground">
+              SHA-256:
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Info className="h-3.5 w-3.5 ml-1 cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-xs">
+                    <p>A SHA-256 hash is a unique digital fingerprint for a file. You can use it to verify that the downloaded file has not been tampered with and is the official release.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <span className="ml-1 select-all">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span>
+            </div>
           </div>
           <div className="flex flex-col items-center gap-2">
             <Button size="lg" className="w-64 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transition-shadow whitespace-normal h-auto py-3">
               <LinuxIcon /> Download for Linux (.AppImage)
             </Button>
-            <p className="text-xs text-muted-foreground">SHA-256: <span className="select-all">a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2</span></p>
+             <div className="flex items-center text-xs text-muted-foreground">
+              SHA-256:
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Info className="h-3.5 w-3.5 ml-1 cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-xs">
+                    <p>A SHA-256 hash is a unique digital fingerprint for a file. You can use it to verify that the downloaded file has not been tampered with and is the official release.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <span className="ml-1 select-all">a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2</span>
+            </div>
           </div>
         </div>
       </div>
