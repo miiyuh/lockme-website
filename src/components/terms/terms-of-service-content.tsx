@@ -9,9 +9,9 @@ const PAGE_TITLE = 'Terms of Service';
 export default function TermsOfServiceClientContent() {
   const [lastUpdated, setLastUpdated] = useState<string>('');
 
-  useEffect(() => {
-    setLastUpdated(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
-  }, []);
+    useEffect(() => {
+      setLastUpdated(new Date().toISOString().split('T')[0]);
+    }, []);
 
   return (
     <section className="max-w-3xl mx-auto">
