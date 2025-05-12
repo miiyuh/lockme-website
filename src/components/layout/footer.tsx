@@ -19,7 +19,7 @@ export function Footer() {
             />
           </Link>
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            &copy; {currentYear} LockMe. App v1.0.0-beta.
+            &copy; {currentYear} LockMe [App v1.0.0]
           </p>
         </div>
         <div className="flex items-center gap-4">
