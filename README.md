@@ -1,4 +1,6 @@
-# LockMe: Secure File Encryption and Decryption
+<img src="https://lockme.my/assets/img/logo_lockme_highRESver.png" alt="LockMe logo" height="64px" />
+
+# LockMe: Secure File Encryption and Decryption - Website
 
 LockMe is a Next.js based website for the LockMe desktop application, an offline-first tool for secure file encryption and decryption using AES-256 and RSA.
 
